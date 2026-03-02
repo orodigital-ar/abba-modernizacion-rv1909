@@ -1,0 +1,36 @@
+{
+  "proyecto": "MRV",
+  "nombre": "Modernizacion RV1909",
+  "tipo": "modernizacion",
+  "descripcion": "Modernizacion sistematica de la Reina-Valera 1909 al espanol contemporaneo",
+  "fecha_creacion": "2026-03-02",
+  "licencia": "CC-BY-SA-4.0",
+  "texto_base": "Reina-Valera 1909 (dominio publico)",
+  "total_versos": 31090,
+  "fases": 4,
+  "datos": {
+    "rv1909_strongs_full": {
+      "archivo": "datos/rv1909_strongs_full.ndjson",
+      "versos": 31090,
+      "con_strongs": true,
+      "dominio_publico": true
+    },
+    "strongs_es": {
+      "archivo": "datos/strongs_es.ndjson",
+      "entradas": 14198,
+      "dominio_publico": true
+    },
+    "comparaciones": {
+      "directorio": "datos/comparaciones/",
+      "archivos": ["BJ3.ndjson", "BTX3.ndjson", "NBJ.ndjson", "RV1960_strongs.ndjson"],
+      "dominio_publico": false,
+      "en_gitignore": true
+    }
+  },
+  "estado": {
+    "fase1_ortografia": "pendiente",
+    "fase2_semantica": "pendiente",
+    "fase3_revision": "pendiente",
+    "fase4_validacion": "pendiente"
+  }
+}

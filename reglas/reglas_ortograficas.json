@@ -1,0 +1,87 @@
+{
+  "_descripcion": "Reglas deterministas para modernizacion ortografica de la RV1909",
+  "_version": "1.0",
+  "_fecha": "2026-03-02",
+
+  "tildes_monosilabicas": {
+    "_nota": "Monosilabos que perdieron tilde en reformas ortograficas (RAE 1959, 2010)",
+    "reglas": [
+      {"antiguo": "fué", "moderno": "fue"},
+      {"antiguo": "Fué", "moderno": "Fue"},
+      {"antiguo": "FUÉ", "moderno": "FUE"},
+      {"antiguo": "vió", "moderno": "vio"},
+      {"antiguo": "Vió", "moderno": "Vio"},
+      {"antiguo": "dió", "moderno": "dio"},
+      {"antiguo": "Dió", "moderno": "Dio"},
+      {"antiguo": "fuí", "moderno": "fui"},
+      {"antiguo": "Fuí", "moderno": "Fui"},
+      {"antiguo": "fíe", "moderno": "fie"},
+      {"antiguo": "díle", "moderno": "dile"},
+      {"antiguo": "díles", "moderno": "diles"},
+      {"antiguo": "díjole", "moderno": "díjole"},
+      {"antiguo": "tráe", "moderno": "trae"}
+    ]
+  },
+
+  "preposicion_arcaica": {
+    "_nota": "La preposicion 'a' llevaba tilde antes de vocal en ortografia antigua",
+    "reglas": [
+      {"antiguo": " á ", "moderno": " a "},
+      {"antiguo": " Á ", "moderno": " A "}
+    ]
+  },
+
+  "disambiguation_strongs": {
+    "_nota": "Palabras que se modernizan diferente segun el Strong's asociado",
+    "reglas": [
+      {
+        "palabra": "crió",
+        "casos": [
+          {"strongs": ["H1254"], "moderno": "creó", "razon": "bara = crear (ex nihilo)"},
+          {"strongs": ["H7311"], "moderno": "crió", "razon": "rum = criar/elevar (se mantiene)"},
+          {"strongs": ["H1431"], "moderno": "crió", "razon": "gadal = criar/hacer crecer"},
+          {"strongs": ["H3205"], "moderno": "engendró", "razon": "yalad = dar a luz/engendrar"}
+        ],
+        "default": "creó"
+      },
+      {
+        "palabra": "Crió",
+        "casos": [
+          {"strongs": ["H1254"], "moderno": "Creó", "razon": "bara = crear"},
+          {"strongs": ["H7311"], "moderno": "Crió", "razon": "rum = criar/elevar"},
+          {"strongs": ["H1431"], "moderno": "Crió", "razon": "gadal = criar"},
+          {"strongs": ["H3205"], "moderno": "Engendró", "razon": "yalad = engendrar"}
+        ],
+        "default": "Creó"
+      },
+      {
+        "palabra": "haz",
+        "casos": [
+          {"strongs": ["H6440"], "moderno": "faz", "razon": "panim = rostro/faz"},
+          {"strongs": ["H6440", "H8415"], "moderno": "faz", "razon": "panim + tehom"},
+          {"strongs": ["H6440", "H4325"], "moderno": "faz", "razon": "panim + mayim"}
+        ],
+        "default": null
+      }
+    ]
+  },
+
+  "ortografia_general": {
+    "_nota": "Cambios ortograficos generales sin ambiguedad",
+    "reglas": [
+      {"antiguo": "apóstol", "moderno": "apóstol"},
+      {"antiguo": "Espíritu-Santo", "moderno": "Espíritu Santo"},
+      {"antiguo": "espíritu-santo", "moderno": "espíritu santo"}
+    ]
+  },
+
+  "palabras_arcaicas_simples": {
+    "_nota": "Sustituciones de vocabulario arcaico sin ambiguedad contextual",
+    "reglas": [
+      {"antiguo": "empero", "moderno": "pero"},
+      {"antiguo": "Empero", "moderno": "Pero"},
+      {"antiguo": "satisfizo", "moderno": "satisfizo"},
+      {"antiguo": "sobreseimiento", "moderno": "sobreseimiento"}
+    ]
+  }
+}

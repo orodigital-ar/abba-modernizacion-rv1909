@@ -1,0 +1,16 @@
+# Comparaciones con copyright (uso privado)
+datos/comparaciones/*.ndjson
+
+# WAL (crash recovery, temporal)
+logs/.wal/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
