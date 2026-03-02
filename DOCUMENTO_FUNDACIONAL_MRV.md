@@ -1,7 +1,7 @@
 # Documento Fundacional
 ## Proyecto de Modernizacion de la RV1909
 
-**Version:** 1.1
+**Version:** 1.2
 **Fecha:** 2026-03-02
 **Estado:** Vigente
 **Sello BFA:** Pendiente (se sellara con la sesion de formalizacion)
@@ -35,7 +35,8 @@ Los creadores y responsables fundacionales del proyecto son:
 
 - **Rodolfo Miranda** — Direccion tecnica, arquitectura de datos, desarrollo de scripts
   y pipeline de modernizacion, administracion del repositorio y sellos BFA.
-- **Daniel Miranda** — Co-fundador. [Rol a definir por acuerdo entre fundadores.]
+- **Daniel Miranda** — Co-fundador. Rol a definir por acuerdo entre fundadores
+  (pendiente, se formalizara en anexo a este documento).
 
 Ambos ejercen la **direccion fundadora** y definen conjuntamente los lineamientos
 estrategicos, tecnicos, editoriales y de publicacion.
@@ -129,8 +130,7 @@ El alineamiento Strong del AT se construyo mediante:
 - Contenido: 14,198 definiciones breves de numeros Strong (hebreo y griego)
 - Fuente original: James Strong, *The Exhaustive Concordance of the Bible* (1890)
 - La obra original de Strong es dominio publico (publicada en EE.UU. antes de 1928)
-- La compilacion digital fue extraida de modulos publicos de e-Sword y reformateada
-  a NDJSON como herramienta interna de referencia
+- Compilacion digital propia en formato NDJSON
 - Se usa como insumo para desambiguacion y verificacion, no como contenido de salida
 
 ### 5.4 Metricas de calidad conocidas
@@ -172,7 +172,10 @@ El proyecto se rige por:
 ## 8. Licencias y publicacion
 
 ### 8.1 Texto modernizado (output del proyecto)
-**CC-BY-SA 4.0** (Creative Commons Atribucion-CompartirIgual 4.0 Internacional)
+**CC-BY-NC-SA 4.0** (Creative Commons Atribucion-NoComercial-CompartirIgual 4.0 Internacional)
+
+- Uso no comercial: libre con atribucion
+- Uso comercial: requiere licencia negociada con los fundadores
 
 ### 8.2 Codigo fuente (scripts, pipeline)
 Publicado en el repositorio Git. Licencia a definir por los fundadores (MIT o Apache-2.0).

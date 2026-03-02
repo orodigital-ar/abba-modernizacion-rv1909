@@ -1,13 +1,11 @@
-# Creative Commons Attribution-ShareAlike 4.0 International
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 
-## CC-BY-SA 4.0
+## CC-BY-NC-SA 4.0
 
 ### Usted es libre de:
 
-- **Compartir** — copiar y redistribuir el material en cualquier medio o formato
-  para cualquier proposito, incluso comercialmente.
-- **Adaptar** — remezclar, transformar y construir a partir del material para
-  cualquier proposito, incluso comercialmente.
+- **Compartir** — copiar y redistribuir el material en cualquier medio o formato.
+- **Adaptar** — remezclar, transformar y construir a partir del material.
 
 El licenciante no puede revocar estas libertades en tanto usted siga los terminos
 de la licencia.
@@ -18,6 +16,9 @@ de la licencia.
   a la licencia, e indicar si se han realizado cambios. Puede hacerlo en cualquier
   forma razonable, pero no de forma tal que sugiera que usted o su uso tienen el
   apoyo del licenciante.
+
+- **NoComercial** — Usted no puede hacer uso del material con propositos comerciales.
+  Para uso comercial se requiere una licencia separada negociada con los autores.
 
 - **CompartirIgual** — Si remezcla, transforma o crea a partir del material, debe
   distribuir su contribucion bajo la misma licencia del original.
@@ -37,7 +38,9 @@ privacidad, o derechos morales pueden limitar la forma en que utilice el materia
 
 ---
 
-Texto completo: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+Texto completo: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 
 Aplicable al texto modernizado producido por este proyecto.
 El texto base RV1909 es dominio publico.
+
+Para consultas de licencia comercial: contactar a los fundadores del proyecto.

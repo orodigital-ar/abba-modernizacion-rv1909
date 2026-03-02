@@ -27,7 +27,8 @@ La modernizacion procede en 4 fases:
 
 ## Licencia
 
-El texto modernizado se publica bajo **CC-BY-SA 4.0**.
+El texto modernizado se publica bajo **CC-BY-NC-SA 4.0**.
+Uso no comercial libre con atribucion. Uso comercial requiere licencia.
 Ver [LICENSE.md](LICENSE.md) para el texto completo.
 
 ## Atribuciones
