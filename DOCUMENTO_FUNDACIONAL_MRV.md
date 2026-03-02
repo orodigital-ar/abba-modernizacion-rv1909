@@ -1,7 +1,7 @@
 # Documento Fundacional
 ## Proyecto de Modernizacion de la RV1909
 
-**Version:** 1.2
+**Version:** 1.3
 **Fecha:** 2026-03-02
 **Estado:** Vigente
 **Sello BFA:** Pendiente (se sellara con la sesion de formalizacion)
@@ -35,8 +35,10 @@ Los creadores y responsables fundacionales del proyecto son:
 
 - **Rodolfo Miranda** — Direccion tecnica, arquitectura de datos, desarrollo de scripts
   y pipeline de modernizacion, administracion del repositorio y sellos BFA.
-- **Daniel Miranda** — Co-fundador. Rol a definir por acuerdo entre fundadores
-  (pendiente, se formalizara en anexo a este documento).
+- **Daniel Miranda** — Co-fundador. Revision teologica y curado exegetico:
+  revision doctrinal del texto modernizado, curado de anotaciones exegeticas
+  (nombres sagrados, precision lexica, notas al texto), validacion biblica
+  de decisiones de modernizacion.
 
 Ambos ejercen la **direccion fundadora** y definen conjuntamente los lineamientos
 estrategicos, tecnicos, editoriales y de publicacion.
