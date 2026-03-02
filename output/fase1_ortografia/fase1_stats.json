@@ -1,0 +1,14 @@
+{
+  "total": 31090,
+  "cambiados": 14766,
+  "sin_cambios": 16318,
+  "necesitan_fase2": 4785,
+  "vacios": 6,
+  "cambios_por_tipo": {
+    "disambiguation_strongs": 41,
+    "simple": 4666,
+    "preposicion": 12871,
+    "disambiguation_default": 16
+  },
+  "timestamp": "2026-03-02T16:14:41"
+}
