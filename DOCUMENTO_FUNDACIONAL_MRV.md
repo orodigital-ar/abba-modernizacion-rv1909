@@ -244,7 +244,7 @@ transparencia metodologica, responsabilidad documental y evidencia temporal veri
 
 **Firmantes fundadores:**
 
-Rodolfo Miranda
+Rodolfo Miranda,
 Daniel Miranda
 
 **Fecha:** 2026-03-02
