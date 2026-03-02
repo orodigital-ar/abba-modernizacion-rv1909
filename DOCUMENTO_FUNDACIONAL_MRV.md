@@ -1,7 +1,7 @@
 # Documento Fundacional
 ## Proyecto de Modernizacion de la RV1909
 
-**Version:** 1.0
+**Version:** 1.1
 **Fecha:** 2026-03-02
 **Estado:** Vigente
 **Sello BFA:** Pendiente (se sellara con la sesion de formalizacion)
@@ -15,10 +15,13 @@ El Proyecto de Modernizacion de la RV1909 tiene como finalidad producir una
 al espanol contemporaneo, preservando la fidelidad al texto original hebreo y griego
 mediante validacion con numeros Strong.
 
-No se trata de una nueva traduccion, sino de una **modernizacion linguistica**:
-actualizar ortografia, vocabulario arcaico y estructuras en desuso, manteniendo
-la precision teologica verificable a traves de los codigos Strong vinculados a
-cada palabra.
+No se trata de una nueva traduccion desde las lenguas originales, sino de una
+**modernizacion linguistica del texto espanol**: actualizar ortografia, vocabulario
+arcaico y estructuras en desuso. Los codigos Strong vinculados a cada palabra
+funcionan como ancla de verificacion: garantizan que la modernizacion no altere
+el significado del termino original hebreo o griego. Los cambios semanticos
+(Fase 2) se limitan a reemplazar vocabulario espanol arcaico por equivalentes
+contemporaneos; no se reinterpreta ni se retraduce el texto fuente.
 
 El proyecto opera como submodulo del Proyecto ABBA 1.0, pero es **autosuficiente**:
 contiene sus propios datos, scripts, documentacion, historial y sellos de evidencia
@@ -80,7 +83,7 @@ La modernizacion del texto se realiza en 4 fases:
 | Elemento | Descripcion | Versos/Entradas | Licencia |
 |---|---|---|---|
 | rv1909_strongs_full.ndjson | RV1909 con alineamiento Strong (AT+NT) | 31,090 versos | Trabajo propio |
-| strongs_es.ndjson | Glosses Strong en espanol | 14,198 entradas | Dominio publico |
+| strongs_es.ndjson | Glosses Strong en espanol | 14,198 entradas | Dominio publico (ver 5.4) |
 | Texto base RV1909 | Reina-Valera 1909 | — | Dominio publico |
 | Comparaciones (BJ3, BTX3, NBJ, RV1960) | Referencia privada | — | Copyright (no distribuidas) |
 
@@ -92,8 +95,10 @@ Se establece expresamente que el proyecto:
 
 - **No copia** la RV1960 con Strong como fuente de salida.
 - **No copia** la RV1909 con Strong del modulo de e-Sword.
-- **No incorpora**, de forma intencional, contenido Strong de terceros con derechos
-  para su redistribucion.
+- **No incorpora** contenido Strong de terceros con derechos para su redistribucion.
+  Esto se respalda con: (a) ausencia de archivos de terceros en el repositorio publico,
+  (b) .gitignore que excluye traducciones con copyright, (c) trazabilidad de fuentes
+  documentada en seccion 5 de este documento.
 - Las traducciones modernas (BJ3, BTX3, NBJ, RV1960) se usan **exclusivamente** como
   referencia privada de verificacion y **no se distribuyen** con el proyecto.
 
@@ -119,7 +124,16 @@ El alineamiento Strong del AT se construyo mediante:
 - Referencia morfologica: SBLGNT (CC BY 4.0)
 - Anotacion Strong: trabajo propio a partir de rv1909_word_strongs (128,177 mapeos)
 
-### 5.3 Metricas de calidad conocidas
+### 5.3 Glosses Strong en espanol (strongs_es.ndjson)
+
+- Contenido: 14,198 definiciones breves de numeros Strong (hebreo y griego)
+- Fuente original: James Strong, *The Exhaustive Concordance of the Bible* (1890)
+- La obra original de Strong es dominio publico (publicada en EE.UU. antes de 1928)
+- La compilacion digital fue extraida de modulos publicos de e-Sword y reformateada
+  a NDJSON como herramienta interna de referencia
+- Se usa como insumo para desambiguacion y verificacion, no como contenido de salida
+
+### 5.4 Metricas de calidad conocidas
 
 A la fecha de este documento:
 - 6 versos con texto vacio (pendientes de correccion)
@@ -176,7 +190,9 @@ Por uso de fuentes CC BY 4.0:
 
 ### 8.4 Datos no distribuidos
 Las traducciones de comparacion (BJ3, BTX3, NBJ, RV1960) son propiedad de sus
-respectivos editores. Se usan bajo fair use academico y **no se distribuyen**.
+respectivos editores. Se usan exclusivamente como **referencia interna de comparacion**,
+sin reproduccion ni redistribucion. No forman parte del output publicado ni del
+repositorio publico (excluidas via .gitignore).
 
 ---
 
