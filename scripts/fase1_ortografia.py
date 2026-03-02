@@ -156,16 +156,41 @@ def apply_disambiguation(text, word_strongs, rules):
 
 def needs_fase2(text, original_text, changes):
     """Determina si un verso necesita fase 2 (semantica)."""
-    # Heuristicas para detectar vocabulario arcaico no cubierto por reglas
-    arcaicas = [
-        "vosotros", "tú", "vuestro", "vuestra", "vuestros", "vuestras",
-        "empero", "aqueste", "aquesto", "aquesa", "ansí", "asaz",
-        "plugo", "pluguiere", "maguer", "ca ", "otrosí",
-        "parió", "allegó", "allegaron",
+    text_lower = text.lower()
+
+    # Pronombres de tratamiento (decision editorial pendiente)
+    pronombres = [
+        "vosotros", "vuestro", "vuestra", "vuestros", "vuestras",
     ]
-    for arc in arcaicas:
-        if arc.lower() in text.lower():
+    for p in pronombres:
+        if p in text_lower:
             return True
+
+    # "tú" con word boundary (evita falsos: túnica, betún)
+    if re.search(r'\btú\b', text):
+        return True
+
+    # Vocabulario arcaico no cubierto por reglas
+    arcaismos_regex = [
+        r'\ballegó\b', r'\ballegaron\b', r'\ballegarse\b',
+        r'\bholgar\b', r'\bholgarse\b', r'\bholgó\b',
+        r'\bmenester\b',
+    ]
+    for pattern in arcaismos_regex:
+        if re.search(pattern, text_lower):
+            return True
+
+    # Encliticos verbales (verbo conjugado + pronombre pegado)
+    # Detecta: díjole, levantóse, dijéronle, tomóla, etc.
+    # Excluye gerundios (-ando/-endo/-iendo) e imperativos comunes
+    if re.search(r'\b\w+[óéí](?:le|les|lo|la|los|las|se|me|te|nos)\b', text):
+        # Verificar que no es gerundio
+        match = re.search(r'\b(\w+[óéí](?:le|les|lo|la|los|las|se|me|te|nos))\b', text)
+        if match:
+            word = match.group(1).lower()
+            if not re.search(r'(?:ando|endo|iendo)[slmtn]', word):
+                return True
+
     return False
 
 
@@ -201,11 +226,38 @@ def process_verse(verse, rules):
     text, changes = apply_disambiguation(text, word_strongs, rules.get("disambiguation_strongs", {}).get("reglas", []))
     all_changes.extend(changes)
 
-    # 4. Ortografia general
+    # 4. Conjunciones con tilde (ó, é)
+    text, changes = apply_simple_rules(text, rules.get("conjuncion_o_tilde", {}).get("reglas", []))
+    all_changes.extend(changes)
+    text, changes = apply_simple_rules(text, rules.get("conjuncion_e_tilde", {}).get("reglas", []))
+    all_changes.extend(changes)
+
+    # 5. Demostrativos sin tilde (RAE 2010)
+    text, changes = apply_simple_rules(text, rules.get("demostrativos_sin_tilde", {}).get("reglas", []))
+    all_changes.extend(changes)
+
+    # 6. Solo sin tilde
+    text, changes = apply_simple_rules(text, rules.get("solo_sin_tilde", {}).get("reglas", []))
+    all_changes.extend(changes)
+
+    # 7. Diptongo ui sin tilde
+    text, changes = apply_simple_rules(text, rules.get("diptongo_ui_sin_tilde", {}).get("reglas", []))
+    all_changes.extend(changes)
+
+    # 8. Mas adversativo (inicio de verso y despues de ;)
+    mas_rules = rules.get("mas_adversativo", {}).get("reglas", [])
+    text, changes = apply_simple_rules(text, mas_rules)
+    all_changes.extend(changes)
+    # "Mas " al inicio de verso (semi-determinista: excluir comparaciones)
+    if text.startswith("Mas ") and not re.match(r'Mas (?:que |de |del )', text):
+        text = "Pero " + text[4:]
+        all_changes.append({"tipo": "mas_adversativo", "de": "Mas", "a": "Pero"})
+
+    # 9. Ortografia general
     text, changes = apply_simple_rules(text, rules.get("ortografia_general", {}).get("reglas", []))
     all_changes.extend(changes)
 
-    # 5. Palabras arcaicas simples
+    # 10. Palabras arcaicas simples
     text, changes = apply_simple_rules(text, rules.get("palabras_arcaicas_simples", {}).get("reglas", []))
     all_changes.extend(changes)
 

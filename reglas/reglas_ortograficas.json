@@ -1,7 +1,8 @@
 {
   "_descripcion": "Reglas deterministas para modernizacion ortografica de la RV1909",
-  "_version": "1.0",
+  "_version": "2.0",
   "_fecha": "2026-03-02",
+  "_changelog": "v2.0: +6 categorias nuevas (conjunciones, demostrativos, solo, diptongo ui, Mas adversativo, arcaismos). Hallazgos de 3 agentes de analisis.",
 
   "tildes_monosilabicas": {
     "_nota": "Monosilabos que perdieron tilde en reformas ortograficas (RAE 1959, 2010)",
@@ -16,9 +17,6 @@
       {"antiguo": "fuí", "moderno": "fui"},
       {"antiguo": "Fuí", "moderno": "Fui"},
       {"antiguo": "fíe", "moderno": "fie"},
-      {"antiguo": "díle", "moderno": "dile"},
-      {"antiguo": "díles", "moderno": "diles"},
-      {"antiguo": "díjole", "moderno": "díjole"},
       {"antiguo": "tráe", "moderno": "trae"}
     ]
   },
@@ -28,6 +26,72 @@
     "reglas": [
       {"antiguo": " á ", "moderno": " a "},
       {"antiguo": " Á ", "moderno": " A "}
+    ]
+  },
+
+  "conjuncion_o_tilde": {
+    "_nota": "RAE 2010: la conjuncion 'o' ya no lleva tilde nunca",
+    "reglas": [
+      {"antiguo": " ó ", "moderno": " o "},
+      {"antiguo": " Ó ", "moderno": " O "},
+      {"antiguo": ", ó ", "moderno": ", o "},
+      {"antiguo": "; ó ", "moderno": "; o "}
+    ]
+  },
+
+  "conjuncion_e_tilde": {
+    "_nota": "Alomorfa arcaica de 'y' ante /i-/: 'é' nunca lleva tilde en ortografia moderna",
+    "reglas": [
+      {"antiguo": " é ", "moderno": " e "},
+      {"antiguo": ", é ", "moderno": ", e "},
+      {"antiguo": "; é ", "moderno": "; e "},
+      {"antiguo": " É ", "moderno": " E "}
+    ]
+  },
+
+  "demostrativos_sin_tilde": {
+    "_nota": "RAE 2010: los pronombres demostrativos ya no llevan tilde",
+    "reglas": [
+      {"antiguo": "éste", "moderno": "este"},
+      {"antiguo": "Éste", "moderno": "Este"},
+      {"antiguo": "ésta", "moderno": "esta"},
+      {"antiguo": "Ésta", "moderno": "Esta"},
+      {"antiguo": "éstos", "moderno": "estos"},
+      {"antiguo": "Éstos", "moderno": "Estos"},
+      {"antiguo": "éstas", "moderno": "estas"},
+      {"antiguo": "Éstas", "moderno": "Estas"},
+      {"antiguo": "ése", "moderno": "ese"},
+      {"antiguo": "Ése", "moderno": "Ese"},
+      {"antiguo": "ésa", "moderno": "esa"},
+      {"antiguo": "Ésa", "moderno": "Esa"},
+      {"antiguo": "ésos", "moderno": "esos"},
+      {"antiguo": "ésas", "moderno": "esas"},
+      {"antiguo": "aquél", "moderno": "aquel"},
+      {"antiguo": "Aquél", "moderno": "Aquel"},
+      {"antiguo": "aquélla", "moderno": "aquella"},
+      {"antiguo": "Aquélla", "moderno": "Aquella"},
+      {"antiguo": "aquéllos", "moderno": "aquellos"},
+      {"antiguo": "Aquéllos", "moderno": "Aquellos"},
+      {"antiguo": "aquéllas", "moderno": "aquellas"}
+    ]
+  },
+
+  "solo_sin_tilde": {
+    "_nota": "RAE 2010: 'solo' ya no lleva tilde ni como adverbio",
+    "reglas": [
+      {"antiguo": "sólo", "moderno": "solo"},
+      {"antiguo": "Sólo", "moderno": "Solo"}
+    ]
+  },
+
+  "diptongo_ui_sin_tilde": {
+    "_nota": "RAE: el diptongo 'ui' no lleva tilde (destruido, constituido, etc.)",
+    "reglas": [
+      {"antiguo": "uído", "moderno": "uido"},
+      {"antiguo": "uída", "moderno": "uida"},
+      {"antiguo": "uídos", "moderno": "uidos"},
+      {"antiguo": "uídas", "moderno": "uidas"},
+      {"antiguo": "uímos", "moderno": "uimos"}
     ]
   },
 
@@ -66,10 +130,18 @@
     ]
   },
 
+  "mas_adversativo": {
+    "_nota": "Sustitucion de 'Mas' adversativo por 'Pero' en posiciones seguras (inicio de clausula)",
+    "_advertencia": "Solo al inicio de verso o despues de ; — NO en comparaciones (mas que, mas de)",
+    "reglas": [
+      {"antiguo": "; mas ", "moderno": "; pero "},
+      {"antiguo": "; Mas ", "moderno": "; Pero "}
+    ]
+  },
+
   "ortografia_general": {
     "_nota": "Cambios ortograficos generales sin ambiguedad",
     "reglas": [
-      {"antiguo": "apóstol", "moderno": "apóstol"},
       {"antiguo": "Espíritu-Santo", "moderno": "Espíritu Santo"},
       {"antiguo": "espíritu-santo", "moderno": "espíritu santo"}
     ]
@@ -80,8 +152,17 @@
     "reglas": [
       {"antiguo": "empero", "moderno": "pero"},
       {"antiguo": "Empero", "moderno": "Pero"},
-      {"antiguo": "satisfizo", "moderno": "satisfizo"},
-      {"antiguo": "sobreseimiento", "moderno": "sobreseimiento"}
+      {"antiguo": "EMPERO", "moderno": "PERO"},
+      {"antiguo": "aqueste", "moderno": "este"},
+      {"antiguo": "Aqueste", "moderno": "Este"},
+      {"antiguo": "aquestos", "moderno": "estos"},
+      {"antiguo": "Aquestos", "moderno": "Estos"},
+      {"antiguo": "aquesto", "moderno": "esto"},
+      {"antiguo": "Aquesto", "moderno": "Esto"},
+      {"antiguo": "plugo", "moderno": "agradó"},
+      {"antiguo": "Plugo", "moderno": "Agradó"},
+      {"antiguo": "pluguiere", "moderno": "agradare"},
+      {"antiguo": "asaz", "moderno": "muy"}
     ]
   }
 }
