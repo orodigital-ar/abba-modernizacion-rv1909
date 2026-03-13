@@ -1,0 +1,5 @@
+# FAB — repo-git
+# Todo lo interno (cerebro, config, WAL) queda fuera de esta carpeta.
+# Solo contenido publicable vive aqui.
+__pycache__/
+*.pyc

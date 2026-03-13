@@ -1,0 +1,6 @@
+# FAB — repo-db
+# Schemas, migraciones, scripts SQL, dumps, bases de datos.
+# Toda la informacion relacionada con bases de datos.
+__pycache__/
+*.pyc
+.env

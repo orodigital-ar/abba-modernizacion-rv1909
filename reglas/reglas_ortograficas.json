@@ -162,7 +162,20 @@
       {"antiguo": "plugo", "moderno": "agradó"},
       {"antiguo": "Plugo", "moderno": "Agradó"},
       {"antiguo": "pluguiere", "moderno": "agradare"},
-      {"antiguo": "asaz", "moderno": "muy"}
+      {"antiguo": "asaz", "moderno": "muy"},
+      {"antiguo": "aquesta", "moderno": "esta"},
+      {"antiguo": "Aquesta", "moderno": "Esta"},
+      {"antiguo": "aquestas", "moderno": "estas"},
+      {"antiguo": "Aquestas", "moderno": "Estas"}
+    ]
+  },
+
+  "nombre_divino": {
+    "_nota": "Reemplazo del nombre divino: Jehová (híbrido artificial) por YHWH (Tetragrámaton hebreo original). Decisión editorial de Rodolfo Miranda, 2026-03-02.",
+    "reglas": [
+      {"antiguo": "Jehová", "moderno": "YHWH"},
+      {"antiguo": "JEHOVÁ", "moderno": "YHWH"},
+      {"antiguo": "jehová", "moderno": "YHWH"}
     ]
   }
 }

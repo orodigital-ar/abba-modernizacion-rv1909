@@ -1,0 +1,276 @@
+<!-- ABBA:CORE:START v{{FRAMEWORK_VERSION}} -->
+# CLAUDE.md — {{PROJECT_NAME}}
+
+> FAB (Framework ABBA) v{{FRAMEWORK_VERSION}}
+
+> Este archivo es el punto de entrada para cualquier agente IA.
+> Leelo completo antes de hacer cualquier cosa.
+
+---
+
+## Que es {{PROJECT_SHORT_NAME}}
+
+{{PROJECT_DESCRIPTION}}
+
+---
+
+## Estructura del proyecto
+
+```
+{{PROJECT_SLUG}}/
+├── CLAUDE.md                     <- ESTE ARCHIVO. Leelo primero.
+├── CONSCIENCIA.md                <- Memoria historica del SER.
+├── {{PLAN_FILE}}                 <- QUE HAY QUE HACER + estado [x]/[ ].
+├── IDEAS.md                      <- Ideas sin compromiso, cajon libre.
+├── framework.json                <- Config del proyecto
+├── .abba/                        <- Config privada (credenciales, keys, snapshots, hooks)
+│   ├── snapshots/                <- Snapshots auto de brain files (proteccion)
+│   ├── hooks/                    <- Scripts pre/post start y end
+│   └── integrados/               <- Archivos sueltos ya integrados
+├── scripts/
+│   └── framework.py              <- Motor de sesiones, WAL, Git, BFA
+├── logs/
+│   └── .wal/                     <- Write-Ahead Log (crash recovery, interno)
+│
+├── {{REPO_DIR}}/                 <- CODIGO + EVIDENCIA → GitHub (privado o publico)
+│   ├── logs/                     <- Historial, sesiones selladas, sellos BFA
+│   ├── {{SUBPROJECTS_DIR}}/      <- Subproyectos con su trabajo
+│   ├── docs/                     <- Documentacion tecnica
+│   └── .gitignore
+│
+├── {{WEB_DIR}}/                  <- SITIO WEB + ENDPOINTS → hosting
+│   └── .gitignore
+│
+├── {{APP_DIR}}/                  <- APP NATIVA Android/iOS → stores
+│   └── .gitignore
+│
+└── {{DB_DIR}}/                   <- BASE DE DATOS: schemas, SQL, dumps
+    └── .gitignore
+```
+
+**Principio: La raiz es interna. Las cuatro carpetas repo son las salidas del proyecto.**
+
+| Carpeta | Que contiene | Destino |
+|---|---|---|
+| `{{REPO_DIR}}/` | Codigo fuente, evidencia, docs legales, logs sellados | GitHub |
+| `{{WEB_DIR}}/` | Sitio web, endpoints, webservices, landing page | Hosting web |
+| `{{APP_DIR}}/` | Proyecto nativo Android/iOS | App stores |
+| `{{DB_DIR}}/` | Schemas, migraciones, scripts SQL, dumps | Servidor DB |
+
+El cerebro, el WAL, las credenciales y el motor quedan en la raiz (interno).
+Las credenciales de todos los servicios van en `.abba/.env`.
+
+---
+
+## Sistema de logging
+
+### Principio: NUNCA borrar, NUNCA sobreescribir
+
+Hay 3 niveles de logs:
+
+| Nivel | Archivo | Que registra |
+|---|---|---|
+| **Master** | `{{REPO_DIR}}/logs/HISTORIAL_MASTER.ndjson` | Hitos globales del proyecto completo |
+| **Proyecto** | `{{REPO_DIR}}/{{SUBPROJECTS_DIR}}/*/logs/HISTORIAL.ndjson` | Eventos de cada subproyecto |
+| **Sesion** | `{{REPO_DIR}}/{{SUBPROJECTS_DIR}}/*/logs/sesion_NNN_FECHA.md` | Detalle humano de cada sesion |
+
+Los HISTORIAL son append-only (JSON lines). Las sesiones MD se sellan al cerrar.
+
+### Herramienta: `{{FRAMEWORK_CMD}}`
+
+```bash
+# Sesiones
+python {{FRAMEWORK_CMD}} status                          # Ver estado de los proyectos
+python {{FRAMEWORK_CMD}} start KEY                       # Abrir sesion
+python {{FRAMEWORK_CMD}} event KEY "tipo" "detalle"      # Registrar evento en sesion activa
+python {{FRAMEWORK_CMD}} end KEY "resumen"               # Cerrar y sellar sesion
+
+# Automatizacion del "cerebro"
+python {{FRAMEWORK_CMD}} context "desc"                  # Snapshot de contexto (crash recovery)
+python {{FRAMEWORK_CMD}} progreso "texto"                # Marca checkbox en {{PLAN_FILE}}
+python {{FRAMEWORK_CMD}} plan "idea"                     # Agrega idea a IDEAS.md
+python {{FRAMEWORK_CMD}} note "aprendizaje"              # Nota para MEMORY.md (mostrada en end)
+python {{FRAMEWORK_CMD}} summary "titulo" "contenido"    # Seccion en log raiz del dia
+
+# Snapshots / Diff
+python {{FRAMEWORK_CMD}} snapshot ["label"]               # Snapshot manual de brain files
+python {{FRAMEWORK_CMD}} snapshot-list                    # Listar snapshots
+python {{FRAMEWORK_CMD}} snapshot-restore [N]             # Restaurar desde snapshot
+python {{FRAMEWORK_CMD}} diff                             # Diff vs ultimo snapshot
+
+# Verificacion
+python {{FRAMEWORK_CMD}} audit [KEY]                      # Auditoria de integridad
+
+# WAL / Recovery
+python {{FRAMEWORK_CMD}} recover                         # Recuperar datos del WAL tras crash
+python {{FRAMEWORK_CMD}} wal-status                      # Inspeccionar WAL sin modificar
+```
+
+### //comandos — Comandos de alto nivel
+
+El usuario puede pedir estos comandos con doble barra (`//`). El agente los reconoce y ejecuta.
+
+| Comando | Que hace |
+|---|---|
+| `//integrar` | Escanea TODO el proyecto y alimenta brain files con el conocimiento encontrado |
+| `//audit` | Verifica integridad de sesiones selladas, logs y sellos BFA |
+
+#### //integrar — Principio: TODO alimenta el cerebro
+
+**Regla fundamental:** SIEMPRE se alimentan los brain files con todos los archivos del proyecto.
+La unica diferencia es que pasa con el archivo fuente despues:
+- **Archivos en repo-xxx/**: se leen, se extrae conocimiento, NO se tocan (son contenido publicado)
+- **Archivos sueltos** (fuera de repos): se leen, se extrae conocimiento, se archivan en `.abba/integrados/`
+
+Flujo:
+1. Correr `python {{FRAMEWORK_CMD}} integrar` → lista archivos en 2 zonas (REPO + SUELTOS)
+2. Leer cada archivo
+3. Decidir QUE brain file(s) alimentar:
+   - **CLAUDE.md** — definicion del proyecto, estructura, reglas
+   - **PLAN_DE_ACCION.md** — tareas, fases, roadmap, estado
+   - **IDEAS.md** — ideas sin compromiso
+   - **CONSCIENCIA.md** — recuerdos, decisiones historicas, aprendizajes
+4. Preguntar al usuario: **"Integro automaticamente o paso a paso?"**
+5. Extraer conocimiento relevante e integrarlo en los brain files correspondientes
+6. Archivar sueltos: `python {{FRAMEWORK_CMD}} archive <ruta>` (repos NO se tocan)
+
+#### //audit
+
+1. Correr `python {{FRAMEWORK_CMD}} audit` (o `audit KEY` para un proyecto especifico)
+2. Revisar reporte: `[v]` OK, `[!]` advertencia, `[x]` error
+3. Si hay errores, investigar y resolver manualmente
+4. Verificaciones: JSON valido en historiales, timestamps monotonicos, sesiones selladas, pares inicio/fin, hashes BFA
+
+### WAL (Write-Ahead Log) — Crash Recovery
+
+Cada escritura va PRIMERO a `logs/.wal/wal.ndjson` y LUEGO al destino final.
+Si el sistema se cae, el WAL conserva los datos.
+
+- **`start`**: Auto-detecta WAL pendiente, recupera, muestra contexto y notas anteriores
+- **`end`**: Muestra recordatorio de notas pendientes, luego limpia todo el WAL
+- **`recover`**: Fuerza recuperacion manual (idempotente, sin duplicados)
+
+---
+
+## Comunicacion con el usuario
+
+### Progreso visible
+
+Cuando ejecutes una secuencia de pasos (instalacion, configuracion, backlog, etc.),
+mostra el progreso al usuario asi:
+
+```
+[Paso 3/12] Configurando variables de entorno...
+[Paso 4/12] Creando endpoint /v1/health...
+```
+
+Antes de empezar, conta los pasos totales. Actualiza el contador en cada paso.
+Si surgen pasos extra, ajusta el total: `[Paso 5/14] (2 pasos nuevos detectados)`.
+
+El usuario debe saber en todo momento donde estas parado y cuanto falta.
+
+### Al pedir "siguiente"
+
+Cuando el usuario diga "siguiente", "next", "dale", "continua" o similar,
+avanza al proximo paso pendiente y mostra el progreso actualizado.
+
+---
+
+## REGLA CRITICA: Autonomia y confirmacion
+
+**NUNCA ejecutes un plan completo (backlog, roadmap, checklist multi-dia) de forma autonoma.**
+Los planes son hojas de ruta, NO ordenes de ejecucion inmediata.
+
+Regla: **un paso a la vez, con confirmacion del usuario antes de avanzar al siguiente.**
+
+Si encontras un plan de trabajo (backlog, roadmap, etc.):
+1. Mostralo al usuario con resumen de pasos
+2. Pregunta: "Cual queres que hagamos ahora?"
+3. Ejecuta SOLO lo que el usuario confirme
+4. Al terminar ese paso, pregunta antes de seguir
+
+No asumas que "hacer todo" es lo correcto. El usuario decide el ritmo.
+
+### Reglas de ejecucion de comandos
+
+Los comandos de `{{FRAMEWORK_CMD}}` son **SECUENCIALES** — nunca correr en paralelo.
+
+Orden obligatorio:
+```
+start KEY → (esperar que termine) → event/context/note/progreso/summary → (esperar) → end KEY
+```
+
+Reglas:
+- `start` DEBE terminar antes de correr cualquier otro comando
+- `event` requiere una sesion abierta — si `start` no termino, `event` falla
+- `progreso "texto"` busca un checkbox EXISTENTE en {{PLAN_FILE}} por substring — no crea nuevos. Copia el texto exacto del checkbox.
+- `note`, `progreso` y `summary` DEBEN completarse ANTES de `end` (end limpia el WAL)
+- `end` es siempre el ULTIMO comando de la sesion
+
+---
+
+## Protocolo de trabajo
+
+### Al iniciar sesion:
+
+**Ejecutar TODOS los pasos 1-5 antes de hablar con el usuario. Es una secuencia de arranque, no una lista para hacer de a uno.**
+
+1. Leer este archivo (CLAUDE.md)
+2. Si hay un bloque `<!-- ABBA:PENDING_UPDATE -->` al final:
+   - Informar al usuario cuantas secciones hay pendientes ([NUEVA] y [ACTUALIZADA])
+   - Preguntar: "Integro las actualizaciones del framework?"
+   - Si confirma: mover [NUEVA] al core, reemplazar [ACTUALIZADA], eliminar bloque, actualizar version en linea 3, guardar
+   - Si dice "despues": continuar normalmente
+3. Leer `CONSCIENCIA.md` → memoria historica del SER
+4. Leer `{{PLAN_FILE}}` → conocer el roadmap y estado (NO ejecutar, solo leer)
+5. `python {{FRAMEWORK_CMD}} start KEY`
+
+**Recien ahora, PARAR. Esperar instrucciones del usuario.** No ejecutar nada mas hasta que el usuario diga que hacer. Mostrar un resumen breve de lo leido (estado del proyecto, tareas pendientes clave) para que el usuario tenga contexto.
+
+### Durante la sesion:
+
+Estos comandos se usan cuando corresponda, no todos en cada sesion:
+
+- Registrar eventos: `python {{FRAMEWORK_CMD}} event KEY "tipo" "detalle"`
+- Guardar contexto: `python {{FRAMEWORK_CMD}} context "que estoy haciendo"`
+- Ideas nuevas: `python {{FRAMEWORK_CMD}} plan "idea"`
+- Aprendizajes: `python {{FRAMEWORK_CMD}} note "aprendizaje para MEMORY"`
+- Log raiz: `python {{FRAMEWORK_CMD}} summary "titulo" "contenido"`
+
+### Al completar una tarea:
+
+Preguntar al usuario: **"Cierro la sesion o seguimos con otra cosa?"**
+No cerrar automaticamente. No quedarte en silencio. Preguntar.
+
+### Al cerrar sesion (cuando el usuario confirme):
+
+Solo ejecutar `end` cuando el usuario confirme que quiere cerrar.
+Si el usuario se olvida, no pasa nada — el WAL protege la sesion y
+`start` la recupera automaticamente en la proxima vez.
+
+1. Marcar progreso: `python {{FRAMEWORK_CMD}} progreso "texto del checkbox"`
+2. `python {{FRAMEWORK_CMD}} end KEY "resumen"`
+3. Actualizar `CONSCIENCIA.md` con recuerdos historicos de la sesion
+
+### Reglas de archivos:
+
+- **Append-only**: HISTORIAL.ndjson y HISTORIAL_MASTER.ndjson (nunca editar lineas existentes)
+- **Inmutables**: Sesiones MD selladas (no se tocan despues de `end`)
+- **Solo agregar**: {{PLAN_FILE}} (nunca borrar items, solo marcar [x]) y IDEAS.md (nunca borrar, tachar si se descartan)
+
+---
+
+## Que NO hacer
+
+- NO borrar logs, historiales ni sesiones selladas
+- NO modificar sesiones selladas
+- NO empezar trabajo sin abrir sesion (`start`)
+- NO ejecutar `end` sin confirmacion del usuario — siempre preguntar antes de cerrar
+- NO ejecutar planes, backlogs ni roadmaps sin confirmacion del usuario
+- NO correr comandos de {{FRAMEWORK_CMD}} en paralelo (son secuenciales)
+- NO inventar texto para `progreso` — copiar el texto exacto del checkbox de {{PLAN_FILE}}
+- NO eliminar el bloque PENDING_UPDATE sin integrarlo o consultar al usuario
+
+<!-- ABBA:CORE:END -->
+
+{{CUSTOM_SECTIONS}}

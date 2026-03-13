@@ -1,0 +1,51 @@
+{
+  "framework_version": "2.5.0",
+  "project": {
+    "name": "Modernizacion Rv1909",
+    "short_name": "Modernizacion Rv1909",
+    "description": ""
+  },
+  "brain": {
+    "claude_md": "CLAUDE.md",
+    "consciencia_md": "CONSCIENCIA.md",
+    "plan_file": "PLAN_DE_ACCION.md",
+    "ideas_file": "IDEAS.md",
+    "ideas_section": "## Ideas"
+  },
+  "projects": {},
+  "paths": {
+    "repo_dir": "repo-git",
+    "web_dir": "repo-web",
+    "app_dir": "repo-app",
+    "db_dir": "repo-db",
+    "subprojects_dir": "proyectos",
+    "master_log": "logs/HISTORIAL_MASTER.ndjson",
+    "wal_dir": "logs/.wal"
+  },
+  "private": {
+    "dir": ".abba"
+  },
+  "bfa": {
+    "enabled": false,
+    "stamp_url": "https://tsaapi.bfa.ar/api/tsa/stamp/",
+    "verify_url": "https://tsaapi.bfa.ar/api/tsa/verify/",
+    "auth_url": "https://tsaapi.bfa.ar/api-token-auth/",
+    "receipts_dir": "sello_bfa/receipts"
+  },
+  "git": {
+    "enabled": true,
+    "auto_sync_on_end": true
+  },
+  "snapshots": {
+    "enabled": true,
+    "max_keep": 10
+  },
+  "hooks": {
+    "enabled": true
+  },
+  "systems": {},
+  "display": {
+    "banner_art": [],
+    "status_header": "Modernizacion Rv1909"
+  }
+}

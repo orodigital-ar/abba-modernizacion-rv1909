@@ -1,0 +1,197 @@
+{
+  "_descripcion": "Excepciones y datos auxiliares para el motor de encliticos v1",
+  "_version": "1.0",
+  "_fecha": "2026-03-02",
+  "_spec": "SPEC_ENCLITICOS_v1.md",
+
+  "force_deaccent": {
+    "_nota": "Verbos irregulares frecuentes cuya base enclitica lleva tilde arcaica en silaba NO final. Regla general: deaccent() basta, pero estas entradas sirven como whitelist positiva de formas CONFIRMADAS en el corpus RV1909. Clave=base con tilde, valor=base moderna.",
+    "díjo": "dijo",
+    "díje": "dije",
+    "hízo": "hizo",
+    "púso": "puso",
+    "púse": "puse",
+    "víno": "vino",
+    "túvo": "tuvo",
+    "húbo": "hubo",
+    "súpo": "supo",
+    "quíso": "quiso",
+    "púdo": "pudo",
+    "trújo": "trajo",
+    "trájo": "trajo",
+    "díce": "dice",
+    "dícen": "dicen",
+    "díjeron": "dijeron",
+    "hicíeron": "hicieron",
+    "pusiéron": "pusieron",
+    "trajéron": "trajeron",
+    "vinéron": "vinieron",
+    "tuviéron": "tuvieron",
+    "fuéron": "fueron",
+    "diéron": "dieron",
+    "bendíjo": "bendijo",
+    "maldíjo": "maldijo",
+    "introdújo": "introdujo",
+    "redújo": "redujo",
+    "estúvo": "estuvo",
+    "detúvo": "detuvo",
+    "mantúvo": "mantuvo",
+    "propúso": "propuso",
+    "híciste": "hiciste",
+    "díste": "diste",
+    "púsiste": "pusiste",
+    "ruégo": "ruego"
+  },
+
+  "present_historical": {
+    "_nota": "Whitelist lexica cerrada para presente historico con enclitico. Solo verbos confirmados en el corpus RV1909 con frecuencia significativa.",
+    "díce": "dice",
+    "Díce": "Dice",
+    "dícen": "dicen",
+    "Dícen": "Dicen"
+  },
+
+  "blacklist_tokens": {
+    "_nota": "Tokens que terminan en silabas coincidentes con cliticos pero NO son formas encliticas. Organizados por tipo. El motor NO debe transformar ninguno de estos.",
+
+    "sustantivos_culo_ulo": [
+      "tabernáculo", "tabernáculos",
+      "espectáculo", "espectáculos",
+      "obstáculo", "obstáculos",
+      "oráculo", "oráculos",
+      "báculo", "báculos",
+      "vínculo", "vínculos",
+      "título", "títulos",
+      "ídolo", "ídolos",
+      "rótulo", "rótulos",
+      "pábulo",
+      "pábilo",
+      "cópula",
+      "mácula",
+      "pústula",
+      "cédula"
+    ],
+
+    "sustantivos_otros": [
+      "discípulo", "discípulos", "condiscípulos",
+      "apóstol", "apóstoles",
+      "parábola", "parábolas",
+      "epístola", "epístolas",
+      "cárcel", "cárceles",
+      "júbilo",
+      "tórtola", "tórtolas",
+      "acémila", "acémilas",
+      "címbalo", "címbalos",
+      "huérfano", "huérfanos",
+      "diácono", "diáconos",
+      "estiércol", "estiércoles",
+      "tábano", "tábanos",
+      "pámpano", "pámpanos",
+      "pífaros",
+      "búfalo", "búfalos",
+      "procónsul", "procónsules",
+      "consuelo",
+      "suelo",
+      "vuelo",
+      "modelo"
+    ],
+
+    "nombres_propios": [
+      "Teófilo",
+      "Tértulo",
+      "Aristóbulo"
+    ],
+
+    "adverbios_mente": [
+      "públicamente",
+      "súbitamente",
+      "difícilmente",
+      "pacíficamente",
+      "próperamente",
+      "píamente",
+      "impíamente",
+      "espontáneamente",
+      "súbitáneamente",
+      "inútilmente",
+      "pérfidamente",
+      "ciertísimamente",
+      "fácilmente",
+      "solícitamente",
+      "súbitáneamente",
+      "prósperamente",
+      "legítimamente"
+    ],
+
+    "adjetivos_pronombres": [
+      "incrédulo", "incrédulos",
+      "volátil", "volátiles",
+      "longánime",
+      "unánime",
+      "increíble"
+    ],
+
+    "otros": [
+      "solo",
+      "cuáles"
+    ]
+  },
+
+  "blacklist_flat": {
+    "_nota": "Lista plana consolidada de todos los tokens de blacklist (para lookup rapido en el motor). Generada a partir de las categorias anteriores.",
+    "tokens": [
+      "tabernáculo", "tabernáculos", "espectáculo", "espectáculos",
+      "obstáculo", "obstáculos", "oráculo", "oráculos", "báculo", "báculos",
+      "vínculo", "vínculos", "título", "títulos", "ídolo", "ídolos",
+      "rótulo", "rótulos", "pábulo", "pábilo", "cópula", "mácula",
+      "pústula", "cédula",
+      "discípulo", "discípulos", "condiscípulos",
+      "apóstol", "apóstoles",
+      "parábola", "parábolas", "epístola", "epístolas",
+      "cárcel", "cárceles", "júbilo",
+      "tórtola", "tórtolas", "acémila", "acémilas",
+      "címbalo", "címbalos", "huérfano", "huérfanos",
+      "diácono", "diáconos", "estiércol", "estiércoles",
+      "tábano", "tábanos", "pámpano", "pámpanos", "pífaros",
+      "búfalo", "búfalos", "procónsul", "procónsules",
+      "consuelo", "suelo", "vuelo", "modelo",
+      "Teófilo", "Tértulo", "Aristóbulo",
+      "públicamente", "súbitamente", "difícilmente",
+      "pacíficamente", "próperamente", "píamente", "impíamente",
+      "espontáneamente", "súbitáneamente", "inútilmente",
+      "pérfidamente", "ciertísimamente", "fácilmente", "solícitamente",
+      "súbitáneamente", "prósperamente", "legítimamente",
+      "incrédulo", "incrédulos", "volátil", "volátiles",
+      "longánime", "unánime", "increíble",
+      "solo", "cuáles"
+    ]
+  },
+
+  "conjugation_whitelist": {
+    "_nota": "Terminaciones de base verbal que indican una conjugacion finita transformable. El motor acepta la base SOLO si matchea una de estas terminaciones (despues de pasar force_deaccent y present_historical).",
+    "preterite_3s": {
+      "pattern": "ends_with_ó",
+      "examples": ["levantó", "tomó", "mató", "habló", "sacó"],
+      "action": "conservar_tilde"
+    },
+    "preterite_3pl": {
+      "pattern": "deaccent_ends_with_aron_eron_ieron",
+      "examples": ["dijeron", "hicieron", "pusieron", "levantaron"],
+      "action": "quitar_tilde_arcaica"
+    },
+    "imperfect_ia": {
+      "pattern": "ends_with_ía_ían",
+      "examples": ["tenía", "decía", "hacía", "había"],
+      "action": "conservar_tilde"
+    },
+    "imperfect_aba": {
+      "pattern": "deaccent_ends_with_aba_aban",
+      "examples": ["llamaba", "estaba", "llevaba"],
+      "action": "quitar_tilde_si_hay"
+    },
+    "future": {
+      "pattern": "ends_with_á_án_é",
+      "examples": ["hará", "pondrá", "haré", "pondré"],
+      "action": "conservar_tilde"
+    }
+  }
+}

@@ -1,15 +1,20 @@
 {
   "total": 31090,
-  "cambiados": 16432,
-  "sin_cambios": 14652,
-  "necesitan_fase2": 4719,
+  "cambiados": 19203,
+  "sin_cambios": 11881,
+  "necesitan_fase2": 3476,
   "vacios": 6,
   "cambios_por_tipo": {
     "disambiguation_strongs": 41,
-    "simple": 7000,
+    "simple": 10951,
     "preposicion": 12871,
+    "enclitico_cat1_pret3s": 2495,
     "mas_adversativo": 1064,
+    "enclitico_cat5_futuro": 651,
+    "futuro_perifrastico": 136,
+    "enclitico_cat2_pret3pl": 643,
+    "enclitico_cat1_imperfecto": 160,
     "disambiguation_default": 16
   },
-  "timestamp": "2026-03-02T18:23:34"
+  "timestamp": "2026-03-02T21:23:48"
 }

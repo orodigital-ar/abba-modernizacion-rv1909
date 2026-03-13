@@ -1,0 +1,9 @@
+# FAB — repo-web
+# Sitio web, endpoints, webservices, landing page.
+# Lo que el mundo ve en el navegador.
+node_modules/
+__pycache__/
+*.pyc
+.env
+dist/
+build/

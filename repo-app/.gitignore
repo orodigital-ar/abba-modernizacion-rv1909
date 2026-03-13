@@ -1,0 +1,13 @@
+# FAB — repo-app
+# App nativa Android/iOS.
+# Lo que el mundo instala en su celular.
+node_modules/
+__pycache__/
+*.pyc
+.env
+*.apk
+*.aab
+*.ipa
+build/
+.gradle/
+Pods/

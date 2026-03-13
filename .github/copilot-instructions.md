@@ -1,0 +1,10 @@
+# copilot-instructions.md
+#
+# Este proyecto usa FAB (Framework ABBA).
+# Todas las instrucciones estan en CLAUDE.md.
+#
+# IMPORTANTE: Lee CLAUDE.md completo antes de hacer cualquier cosa.
+# Ahi encontraras: protocolo de trabajo, comandos, reglas, estructura.
+#
+# REGLA CRITICA: No ejecutes planes ni backlogs sin confirmacion del usuario.
+# Los comandos de framework.py son SECUENCIALES — nunca correr en paralelo.
